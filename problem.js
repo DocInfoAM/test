@@ -14,10 +14,38 @@
 */
 function sostavChisla(massivChisel, chislo) {
   // код писать только внутри данной функции
-  return [[1, 2], [3]];
+  let result = [];
+
+  // Helper function to find combinations recursively
+  function findCombination(currentIndex, currentCombination, currentSum) {
+    if (currentSum === chislo) {
+      result.push(currentCombination.slice()); // Add a copy of the current combination to the result
+      return;
+    }
+
+    if (currentSum > chislo || currentIndex === massivChisel.length) {
+      return;
+    }
+
+    for (let i = currentIndex; i < massivChisel.length; i++) {
+      const currentNumber = massivChisel[i];
+      if (i > currentIndex && currentNumber === massivChisel[i - 1]) {
+        continue; // Skip duplicates
+      }
+      currentCombination.push(currentNumber);
+      findCombination(i + 1, currentCombination, currentSum + currentNumber); // Use i + 1 to avoid reusing the same number
+      currentCombination.pop();
+    }
+  }
+
+  // Sort the input array to ensure consistent results
+  massivChisel.sort((a, b) => a - b);
+
+  findCombination(0, [], 0);
+  return result;
 }
 
-console.log(sostavChisla([8, 2, 3, 4, 6, 7, 1], 99));
+// console.log(sostavChisla([8, 2, 3, 4, 6, 7, 1], 99));
 
 function compareNumericArrays(arr1, arr2) {
   if (arr1.length !== arr2.length) {
@@ -50,7 +78,7 @@ function compareArraysOfNumericArrays(arr1, arr2) {
   return true;
 }
 
-// runTests();
+runTests();
 
 function runTests() {
   const tests = [

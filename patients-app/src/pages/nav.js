@@ -4,6 +4,7 @@ const Navigation = () => {
   return (
     <>
       <nav>
+        <p> Приложение для пациентов </p>
         <ul>
           <li>
             <Link to="/">Доктора</Link>

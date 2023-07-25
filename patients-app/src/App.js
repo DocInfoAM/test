@@ -1,14 +1,23 @@
-import logo from "./logo.svg";
+import Doctors from "./pages/doctors";
+import Clinics from "./pages/clinics";
+import Contacts from "./pages/contacts";
+import Navigation from "./pages/nav";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Patients App</p>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigation />}>
+            <Route path="/" element={<Doctors />} />
+            <Route path="/clinics" element={<Clinics />} />
+            <Route path="/contacts" element={<Contacts />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

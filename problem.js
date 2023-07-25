@@ -15,9 +15,13 @@
 function sostavChisla(massivChisel, chislo) {
   // код писать только внутри данной функции
   let result = [];
-
+  // Sort the input array to ensure consistent results
+  massivChisel.sort();
   // Helper function to find combinations recursively
-  function findCombination(currentIndex, currentCombination, currentSum) {
+  function findCombination() {
+    let currentIndex = 0;
+    let currentCombination = [];
+    let currentSum = 0;
     if (currentSum === chislo) {
       result.push(currentCombination.slice()); // Add a copy of the current combination to the result
       return;
@@ -38,10 +42,7 @@ function sostavChisla(massivChisel, chislo) {
     }
   }
 
-  // Sort the input array to ensure consistent results
-  massivChisel.sort((a, b) => a - b);
-
-  findCombination(0, [], 0);
+  findCombination();
   return result;
 }
 
